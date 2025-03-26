@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { TextField } from '../TextField';
+import { Movie } from '../../types/Movie';
 
 type Props = {
-  onAdd: () => {};
+  onAdd: (value: Movie) => void;
 };
 
 export const NewMovie: React.FC<Props> = ({ onAdd }) => {
@@ -18,7 +19,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    const newMovie = {
+    const newMovie: Movie = {
       title: title.trim(),
       description: description.trim() || '',
       imgUrl: imgUrl.trim(),
@@ -48,8 +49,8 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         name="title"
         label="Title"
         value={title}
-        onChange={e => {
-          setTitle(e);
+        onChange={event => {
+          setTitle(event);
         }}
         required
       />
@@ -58,8 +59,8 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         name="description"
         label="Description"
         value={description}
-        onChange={e => {
-          setDescription(e);
+        onChange={event => {
+          setDescription(event);
         }}
         required={false}
       />
@@ -68,8 +69,8 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         name="imgUrl"
         label="Image URL"
         value={imgUrl}
-        onChange={e => {
-          setImgUrl(e);
+        onChange={event => {
+          setImgUrl(event);
         }}
         required
         validationCallback={url => {
@@ -85,7 +86,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         name="imdbUrl"
         label="Imdb URL"
         value={imdbUrl}
-        onChange={e => setImdbUrl(e)}
+        onChange={event => setImdbUrl(event)}
         required
         validationCallback={url => {
           const pattern =
@@ -100,7 +101,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         name="imdbId"
         label="Imdb ID"
         value={imdbId}
-        onChange={e => setImdbId(e)}
+        onChange={event => setImdbId(event)}
         required
       />
 
